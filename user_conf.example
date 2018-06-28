@@ -1,3 +1,5 @@
+#local_root=/var/ftp/example_user/data
+
 write_enable=NO
 anon_upload_enable=NO
 anon_mkdir_write_enable=NO

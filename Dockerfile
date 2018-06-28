@@ -32,6 +32,9 @@ COPY vsftpd_virtual /etc/pam.d/
 COPY run-vsftpd /usr/sbin/
 COPY addVirtualUser.sh /usr/sbin/
 
+RUN mkdir -p /conf/vsftpd/user_conf/
+COPY user_conf.example /conf/vsftpd/user_conf/
+
 RUN chmod +x /usr/sbin/run-vsftpd && chmod +x /usr/sbin/addVirtualUser.sh
 
 EXPOSE 20 21 21100-21150
