@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+# Do not log to STDOUT by default:
+if [ "$LOG_STDOUT" = "**Boolean**" ]; then
+    export LOG_STDOUT=''
+else
+    export LOG_STDOUT='Yes.'
+fi
+
+# Create home dir and update vsftpd user db:
+if [ -f "/conf/vsftpd/virtual_users" ]; then
+    echo "=> virtual_users has been created before, skipping ..."
+else
+    touch /conf/vsftpd/virtual_users
+    chmod 600 /conf/vsftpd/virtual_users
+fi
+
+# Get log file path
+export LOG_FILE=`grep xferlog_file /etc/vsftpd/vsftpd.conf|cut -d= -f2`
+
+/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
